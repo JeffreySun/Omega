@@ -3,7 +3,7 @@ using Template10.Common;
 using Template10.Utils;
 using Windows.UI.Xaml;
 
-namespace Omega.Services.SettingsServices
+namespace Omega.Services
 {
     public class SettingsService
     {

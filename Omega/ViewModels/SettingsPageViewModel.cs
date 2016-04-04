@@ -13,7 +13,7 @@ namespace Omega.ViewModels
 
     public class SettingsPartViewModel : ViewModelBase
     {
-        Services.SettingsServices.SettingsService _settings;
+        private readonly Services.SettingsService settings;
 
         public SettingsPartViewModel()
         {
@@ -23,38 +23,46 @@ namespace Omega.ViewModels
             }
             else
             {
-                _settings = Services.SettingsServices.SettingsService.Instance;
+                settings = Services.SettingsService.Instance;
             }
         }
 
         public bool UseShellBackButton
         {
-            get { return _settings.UseShellBackButton; }
-            set { _settings.UseShellBackButton = value; base.RaisePropertyChanged(); }
+            get { return settings.UseShellBackButton; }
+            set
+            {
+                settings.UseShellBackButton = value;
+                RaisePropertyChanged();
+            }
         }
 
         public bool UseLightThemeButton
         {
-            get { return _settings.AppTheme.Equals(ApplicationTheme.Light); }
-            set { _settings.AppTheme = value ? ApplicationTheme.Light : ApplicationTheme.Dark; base.RaisePropertyChanged(); }
-        }
-
-        private string _BusyText = "Please wait...";
-        public string BusyText
-        {
-            get { return _BusyText; }
+            get { return settings.AppTheme.Equals(ApplicationTheme.Light); }
             set
             {
-                Set(ref _BusyText, value);
-                _ShowBusyCommand.RaiseCanExecuteChanged();
+                settings.AppTheme = value ? ApplicationTheme.Light : ApplicationTheme.Dark;
+                RaisePropertyChanged();
             }
         }
 
-        DelegateCommand _ShowBusyCommand;
-        public DelegateCommand ShowBusyCommand
-            => _ShowBusyCommand ?? (_ShowBusyCommand = new DelegateCommand(async () =>
+        private string busyText = "Please wait...";
+        public string BusyText
+        {
+            get { return busyText; }
+            set
             {
-                Views.Busy.SetBusy(true, _BusyText);
+                Set(ref busyText, value);
+                showBusyCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        DelegateCommand showBusyCommand;
+        public DelegateCommand ShowBusyCommand
+            => showBusyCommand ?? (showBusyCommand = new DelegateCommand(async () =>
+            {
+                Views.Busy.SetBusy(true, busyText);
                 await Task.Delay(5000);
                 Views.Busy.SetBusy(false);
             }, () => !string.IsNullOrEmpty(BusyText)));

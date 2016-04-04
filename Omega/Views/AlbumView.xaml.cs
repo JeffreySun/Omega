@@ -4,9 +4,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace Omega.Views
 {
-    public sealed partial class DetailPage : Page
+    public sealed partial class AlbumView : Page
     {
-        public DetailPage()
+        public AlbumView()
         {
             InitializeComponent();
             NavigationCacheMode = NavigationCacheMode.Disabled;

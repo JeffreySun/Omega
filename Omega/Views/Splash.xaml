@@ -6,7 +6,8 @@
              mc:Ignorable="d">
 
     <Grid Background="{StaticResource ExtendedSplashBackground}">
-        <Canvas x:Name="rootCanvas" HorizontalAlignment="Stretch"
+        <Canvas x:Name="rootCanvas" 
+                HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch">
             <Canvas.Background>
                 <ImageBrush 

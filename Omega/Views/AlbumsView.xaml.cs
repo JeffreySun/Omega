@@ -2,9 +2,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Omega.Views
 {
-    public sealed partial class MainPage
+    public sealed partial class AlbumsView
     {
-        public MainPage()
+        public AlbumsView()
         {
             InitializeComponent();
             NavigationCacheMode = NavigationCacheMode.Enabled;

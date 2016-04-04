@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Omega.Services.SettingsServices;
+using Omega.Services;
 using Template10.Controls;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -41,7 +41,7 @@ namespace Omega
         {
             // long-running startup tasks go here
 
-            NavigationService.Navigate(typeof(Views.MainPage));
+            NavigationService.Navigate(typeof(Views.AlbumsView));
             await Task.CompletedTask;
         }
     }

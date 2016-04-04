@@ -1,16 +1,15 @@
-using Template10.Mvvm;
 using System.Collections.Generic;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Template10.Mvvm;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Navigation;
 
 namespace Omega.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class AlbumsViewModel : ViewModelBase
     {
-        public MainPageViewModel()
+        public AlbumsViewModel()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
@@ -21,7 +20,8 @@ namespace Omega.ViewModels
         string _Value = "Gas";
         public string Value { get { return _Value; } set { Set(ref _Value, value); } }
 
-        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
+        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, 
+            IDictionary<string, object> suspensionState)
         {
             if (suspensionState.Any())
             {
@@ -30,7 +30,8 @@ namespace Omega.ViewModels
             await Task.CompletedTask;
         }
 
-        public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
+        public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, 
+            bool suspending)
         {
             if (suspending)
             {
@@ -46,7 +47,7 @@ namespace Omega.ViewModels
         }
 
         public void GotoDetailsPage() =>
-            NavigationService.Navigate(typeof(Views.DetailPage), Value);
+            NavigationService.Navigate(typeof(Views.AlbumView), Value);
 
         public void GotoSettings() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 0);
