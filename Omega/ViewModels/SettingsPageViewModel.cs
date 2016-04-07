@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Omega.Services;
 using Template10.Mvvm;
 using Windows.UI.Xaml;
 
@@ -13,7 +14,7 @@ namespace Omega.ViewModels
 
     public class SettingsPartViewModel : ViewModelBase
     {
-        private readonly Services.SettingsService settings;
+        private readonly SettingsService settings;
 
         public SettingsPartViewModel()
         {
@@ -23,7 +24,7 @@ namespace Omega.ViewModels
             }
             else
             {
-                settings = Services.SettingsService.Instance;
+                settings = SettingsService.Instance;
             }
         }
 

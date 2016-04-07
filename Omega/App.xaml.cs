@@ -31,7 +31,7 @@ namespace Omega
                 {
                     DisableBackButtonWhenModal = true,
                     Content = new Views.Shell(nav),
-                    ModalContent = new Views.Busy(),
+                    ModalContent = new Views.Busy()
                 };
             }
             await Task.CompletedTask;
@@ -41,9 +41,8 @@ namespace Omega
         {
             // long-running startup tasks go here
 
-            NavigationService.Navigate(typeof(Views.AlbumsView));
+            NavigationService.Navigate(typeof(Views.LibraryView));
             await Task.CompletedTask;
         }
     }
 }
-

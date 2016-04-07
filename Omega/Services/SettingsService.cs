@@ -1,5 +1,6 @@
 using System;
 using Template10.Common;
+using Template10.Services.SettingsService;
 using Template10.Utils;
 using Windows.UI.Xaml;
 
@@ -7,6 +8,8 @@ namespace Omega.Services
 {
     public class SettingsService
     {
+        private readonly ISettingsHelper helper;
+
         public static SettingsService Instance { get; }
         static SettingsService()
         {
@@ -14,18 +17,17 @@ namespace Omega.Services
             Instance = Instance ?? new SettingsService();
         }
 
-        Template10.Services.SettingsService.ISettingsHelper _helper;
         private SettingsService()
         {
-            _helper = new Template10.Services.SettingsService.SettingsHelper();
+            helper = new SettingsHelper();
         }
 
         public bool UseShellBackButton
         {
-            get { return _helper.Read<bool>(nameof(UseShellBackButton), true); }
+            get { return helper.Read(nameof(UseShellBackButton), true); }
             set
             {
-                _helper.Write(nameof(UseShellBackButton), value);
+                helper.Write(nameof(UseShellBackButton), value);
                 BootStrapper.Current.NavigationService.Dispatcher.Dispatch(() =>
                 {
                     BootStrapper.Current.ShowShellBackButton = value;
@@ -40,26 +42,33 @@ namespace Omega.Services
             get
             {
                 var theme = ApplicationTheme.Light;
-                var value = _helper.Read<string>(nameof(AppTheme), theme.ToString());
-                return Enum.TryParse<ApplicationTheme>(value, out theme) ? theme : ApplicationTheme.Dark;
+                var value = helper.Read(nameof(AppTheme), theme.ToString());
+                return Enum.TryParse(value, out theme) ? theme : ApplicationTheme.Dark;
             }
             set
             {
-                _helper.Write(nameof(AppTheme), value.ToString());
-                (Window.Current.Content as FrameworkElement).RequestedTheme = value.ToElementTheme();
+                helper.Write(nameof(AppTheme), value.ToString());
+                var frame = Window.Current.Content as FrameworkElement;
+                if(frame != null)
+                {
+                    frame.RequestedTheme = value.ToElementTheme();
+                }
+
                 Views.Shell.HamburgerMenu.RefreshStyles(value);
             }
         }
 
         public TimeSpan CacheMaxDuration
         {
-            get { return _helper.Read<TimeSpan>(nameof(CacheMaxDuration), TimeSpan.FromDays(2)); }
+            get
+            {
+                return helper.Read(nameof(CacheMaxDuration), TimeSpan.FromDays(2));
+            }
             set
             {
-                _helper.Write(nameof(CacheMaxDuration), value);
+                helper.Write(nameof(CacheMaxDuration), value);
                 BootStrapper.Current.CacheMaxDuration = value;
             }
         }
     }
 }
-

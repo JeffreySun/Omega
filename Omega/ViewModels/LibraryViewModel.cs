@@ -7,9 +7,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Omega.ViewModels
 {
-    public class AlbumsViewModel : ViewModelBase
+    public class LibraryViewModel : ViewModelBase
     {
-        public AlbumsViewModel()
+        public LibraryViewModel()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
