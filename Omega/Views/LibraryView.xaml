@@ -6,7 +6,6 @@
       xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:controls="using:Template10.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="using:Omega.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:Omega.ViewModels" mc:Ignorable="d">
 
@@ -24,7 +23,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--  TODO: change properties for narrow view  -->
-                        <Setter Target="stateTextBox.Text" Value="Narrow Visual State" />
+                        <!--<Setter Target="stateTextBox.Text" Value="Narrow Visual State" />-->
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateNormal">
@@ -33,7 +32,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--  TODO: change properties for normal view  -->
-                        <Setter Target="stateTextBox.Text" Value="Normal Visual State" />
+                        <!--<Setter Target="stateTextBox.Text" Value="Normal Visual State" />-->
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateWide">
@@ -42,7 +41,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--  TODO: change properties for wide view  -->
-                        <Setter Target="stateTextBox.Text" Value="Wide Visual State" />
+                        <!--<Setter Target="stateTextBox.Text" Value="Wide Visual State" />-->
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -52,17 +51,49 @@
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True" Text="Albums">
-
-            <!--  secondary commands  -->
             <controls:PageHeader.SecondaryCommands>
                 <AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
                 <AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
                 <AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
             </controls:PageHeader.SecondaryCommands>
-
         </controls:PageHeader>
 
-        <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0"
+        <GridView x:Name="AlbumList" ItemsSource="{Binding Albums}" Margin="4,4,0,0"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.AlignRightWithPanel="True"
+                  RelativePanel.AlignBottomWithPanel="True"
+                  RelativePanel.Below="pageHeader" SelectionMode="Extended">
+            <!--<GridView.Triggers>
+                <EventTrigger EventName="ItemClick">
+                    <Core:InvokeCommandAction Command="{Binding MyItemClickCommand}"
+                                          PassEventArgsToCommand="True" />
+                </EventTrigger>
+            </GridView.Triggers>-->
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <RelativePanel Width="150" Height="150">
+
+                        
+                        <Image Source="{Binding Thumbnail}"></Image>
+                        <TextBlock Text="{Binding DisplayName}" 
+                                   RelativePanel.AlignBottomWithPanel="True"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.AlignRightWithPanel="True"/>
+
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:InvokeCommandAction 
+                                    Command="{Binding ElementName=AlbumList, Path=DataContext.GotoAlbumCommand}"
+                                    CommandParameter="{Binding }"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                        
+                    </RelativePanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+
+        <!--<controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0"
                           RelativePanel.AlignLeftWithPanel="True"
                           RelativePanel.Below="pageHeader">
 
@@ -71,11 +102,11 @@
                      Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      TextWrapping="Wrap">
                 <Interactivity:Interaction.Behaviors>
-                    <!--  enable submit on enter key  -->
+                    --><!--  enable submit on enter key  --><!--
                     <Behaviors:KeyBehavior Key="Enter">
                         <Core:CallMethodAction MethodName="GotoDetailsPage" TargetObject="{Binding}" />
                     </Behaviors:KeyBehavior>
-                    <!--  focus on textbox when page loads  -->
+                    --><!--  focus on textbox when page loads  --><!--
                     <Core:EventTriggerBehavior>
                         <Behaviors:FocusAction />
                     </Core:EventTriggerBehavior>
@@ -92,7 +123,7 @@
         <TextBlock x:Name="stateTextBox" Margin="16,16,0,0"
                    RelativePanel.AlignLeftWith="parameterResizer"
                    RelativePanel.Below="parameterResizer"
-                   Text="Current Visual State" />
+                   Text="Current Visual State" />-->
 
     </RelativePanel>
 </Page>

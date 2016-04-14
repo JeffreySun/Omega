@@ -7,6 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omega", "Omega\Omega.csproj
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Native|ARM = Debug Native|ARM
+		Debug Native|x64 = Debug Native|x64
+		Debug Native|x86 = Debug Native|x86
 		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
@@ -15,6 +18,15 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A154EA1F-64DF-41FE-A42C-4D5C5D0CE351}.Debug Native|ARM.ActiveCfg = Debug Native|ARM
+		{A154EA1F-64DF-41FE-A42C-4D5C5D0CE351}.Debug Native|ARM.Build.0 = Debug Native|ARM
+		{A154EA1F-64DF-41FE-A42C-4D5C5D0CE351}.Debug Native|ARM.Deploy.0 = Debug Native|ARM
+		{A154EA1F-64DF-41FE-A42C-4D5C5D0CE351}.Debug Native|x64.ActiveCfg = Debug Native|x64
+		{A154EA1F-64DF-41FE-A42C-4D5C5D0CE351}.Debug Native|x64.Build.0 = Debug Native|x64
+		{A154EA1F-64DF-41FE-A42C-4D5C5D0CE351}.Debug Native|x64.Deploy.0 = Debug Native|x64
+		{A154EA1F-64DF-41FE-A42C-4D5C5D0CE351}.Debug Native|x86.ActiveCfg = Debug Native|x86
+		{A154EA1F-64DF-41FE-A42C-4D5C5D0CE351}.Debug Native|x86.Build.0 = Debug Native|x86
+		{A154EA1F-64DF-41FE-A42C-4D5C5D0CE351}.Debug Native|x86.Deploy.0 = Debug Native|x86
 		{A154EA1F-64DF-41FE-A42C-4D5C5D0CE351}.Debug|ARM.ActiveCfg = Debug|ARM
 		{A154EA1F-64DF-41FE-A42C-4D5C5D0CE351}.Debug|ARM.Build.0 = Debug|ARM
 		{A154EA1F-64DF-41FE-A42C-4D5C5D0CE351}.Debug|ARM.Deploy.0 = Debug|ARM

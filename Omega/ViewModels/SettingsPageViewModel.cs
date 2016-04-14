@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Omega.Services;
 using Template10.Mvvm;
+using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 
 namespace Omega.ViewModels
@@ -18,7 +19,7 @@ namespace Omega.ViewModels
 
         public SettingsPartViewModel()
         {
-            if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+            if (DesignMode.DesignModeEnabled)
             {
                 // designtime
             }
@@ -71,11 +72,11 @@ namespace Omega.ViewModels
 
     public class AboutPartViewModel : ViewModelBase
     {
-        public Uri Logo => Windows.ApplicationModel.Package.Current.Logo;
+        public Uri Logo => Package.Current.Logo;
 
-        public string DisplayName => Windows.ApplicationModel.Package.Current.DisplayName;
+        public string DisplayName => Package.Current.DisplayName;
 
-        public string Publisher => Windows.ApplicationModel.Package.Current.PublisherDisplayName;
+        public string Publisher => Package.Current.PublisherDisplayName;
 
         public string Version
         {
